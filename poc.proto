@@ -1,0 +1,23 @@
+syntax= "proto3";
+package poc;
+option go_package = "github.com/devansh42/grpc-poc/poc";
+
+service Service {
+    rpc SayHello(SingleRequest) returns (Response) {}
+    rpc SayHelloWithClientStream(stream SingleRequest) returns (Response) {}
+    rpc SayHelloWithServerStream(MultipleRequest) returns (stream Response) {}
+    rpc SayHelloWithClientServerStream(stream SingleRequest) returns (stream Response) {}
+
+}
+
+message SingleRequest{
+    int32 limit=1;
+}
+
+message MultipleRequest{
+    int32 limit=1;
+    int32 count=2;
+}
+message Response{
+int32 number=  1;
+}
